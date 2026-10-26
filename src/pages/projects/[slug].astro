@@ -2,6 +2,7 @@
 import { getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Flow from '../../components/Flow.astro';
+import Icon from '../../components/Icon.astro';
 import { projects } from '../../data/projects';
 
 export function getStaticPaths() {
@@ -16,7 +17,7 @@ const next = projects[(i + 1) % projects.length];
 ---
 <Base title={`${project.title} · Shareef Syed`} description={project.blurb}>
   <div class="sheet"><main id="content" class="page">
-    <a class="back" href="/#work">← Shareef Syed</a>
+    <a class="back" href="/#work"><Icon name="arrow-left" size={18} />Shareef Syed</a>
     <header class="head">
       <p class="kicker status"><span class={`dot d-${project.status.replace(' ', '-')}`} aria-hidden="true"></span>{project.status}</p>
       <h1>{project.title}</h1>
@@ -26,9 +27,9 @@ const next = projects[(i + 1) % projects.length];
     <Flow stages={project.stages} caption={project.caption} />
 
     <dl class="story">
-      <div><dt>Problem</dt><dd>{project.problem}</dd></div>
-      <div><dt>Approach</dt><dd>{project.approach}</dd></div>
-      <div><dt>Result</dt><dd>{project.result}</dd></div>
+      <div><dt><Icon name="circle-alert" size={14} />Problem</dt><dd>{project.problem}</dd></div>
+      <div><dt><Icon name="hammer" size={14} />Approach</dt><dd>{project.approach}</dd></div>
+      <div><dt><Icon name="circle-check-big" size={14} />Result</dt><dd>{project.result}</dd></div>
     </dl>
 
     {project.sections?.map((sec) => (
@@ -53,14 +54,14 @@ const next = projects[(i + 1) % projects.length];
 
     <nav class="next" aria-label="Next project">
       <span>Next project</span>
-      <a href={`/projects/${next.slug}/`}>{next.title} →</a>
+      <a href={`/projects/${next.slug}/`}>{next.title} <Icon name="arrow-right" size={22} /></a>
     </nav>
   </main></div>
 </Base>
 
 <style>
   .page { padding: 32px 40px 48px; }
-  .back { display: inline-block; color: var(--navy); text-decoration: none; font: 700 20px/1 var(--font-display); margin-bottom: var(--space-4); }
+  .back { display: inline-flex; align-items: center; gap: 6px; color: var(--navy); text-decoration: none; font: 700 20px/1 var(--font-display); margin-bottom: var(--space-4); }
   .back:hover { color: var(--signal); }
   .head { margin-bottom: var(--space-4); display: grid; gap: 10px; }
   h1 { margin: 0; font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; font-weight: 700; color: var(--navy); text-wrap: balance; max-width: 22ch; }
@@ -72,7 +73,7 @@ const next = projects[(i + 1) % projects.length];
   .d-pilot { background: linear-gradient(90deg, var(--signal) 50%, transparent 50%); }
   .story { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: var(--space-4) 0 0; }
   .story > div { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
-  .story dt { font: 600 11px/1 var(--font-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+  .story dt { display: flex; align-items: center; gap: 6px;  font: 600 11px/1 var(--font-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
   .story dd { margin: 0; color: var(--ink); }
   .extra { margin-top: var(--space-5); display: grid; gap: 10px; }
   .extra h2 { font: 700 28px/1.05 var(--font-display); color: var(--navy); margin: 0; }
@@ -88,7 +89,7 @@ const next = projects[(i + 1) % projects.length];
   .lead { margin-top: 0 !important; }
   .next { margin-top: var(--space-5); background: var(--navy); border-radius: var(--radius); padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; }
   .next span { color: var(--band-ink); font-size: 0.8rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
-  .next a { font: 600 26px/1.1 var(--font-display); color: var(--systems); text-decoration: none; }
+  .next a { display: inline-flex; align-items: center; gap: 8px;  font: 600 26px/1.1 var(--font-display); color: var(--systems); text-decoration: none; }
   .next a:hover { color: #f6f8fa; }
   @media (max-width: 900px) { .g4 { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 760px) { .page { padding: 24px 20px 40px; } .story, .g2, .g3, .g4 { grid-template-columns: 1fr; } }
