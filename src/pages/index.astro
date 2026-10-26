@@ -1,0 +1,255 @@
+---
+import Base from '../layouts/Base.astro';
+import { links, experience, selfService } from '../data/site';
+import { projects } from '../data/projects';
+
+const stats = [
+  ['11+', 'years across databases, cloud and platforms'],
+  ['200+', 'employees use the platform I build and run'],
+  ['120', 'documented automations, about 40 hours saved a week'],
+  ['250+', 'API operations available to AI assistants'],
+];
+
+const kinds: Record<string, string> = {
+  mcp: 'AI tooling',
+  workflow: 'Automation',
+  template: 'Platform',
+  timesheets: 'Integration',
+  rag: 'AI assistant',
+  agents: 'AI agents',
+};
+---
+<Base
+  title="Shareef Syed · Platform and solutions engineer"
+  description="Shareef Syed builds and runs an internal platform used by 200+ people. Enterprise integrations, workflow automation, AI tooling and AWS, from business request to production."
+>
+  <div class="sheet">
+    <header class="cover">
+      <div class="circles" aria-hidden="true"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
+      <nav class="topnav" aria-label="Sections">
+        <a class="name" href="/">Shareef Syed</a>
+        <span class="links">
+          <a href="#work">Work</a>
+          <a href="#experience">Experience</a>
+          <a href={links.resume}>Resume</a>
+        </span>
+      </nav>
+      <p class="kicker">Platform &amp; solutions engineer · Hyderabad</p>
+      <h1>I build the platform enterprise teams run on</h1>
+      <p class="lede">
+        At Signant Health, a clinical-trial technology company, I build and run the internal platform
+        200+ people use for access requests, workflow automation, enterprise integrations and AI tooling.
+        Business teams bring me a problem, and I own it from the first conversation to production.
+      </p>
+      <p class="meta">Looking for forward deployed and solutions engineering roles</p>
+    </header>
+
+    <main id="content">
+      <section class="stats" aria-label="In numbers">
+        {stats.map(([n, l]) => (
+          <div class="stat"><strong>{n}</strong><span>{l}</span></div>
+        ))}
+      </section>
+
+      <section id="work" class="block" aria-labelledby="work-title">
+        <div class="head">
+          <div class="bar" aria-hidden="true"></div>
+          <div class="row">
+            <h2 id="work-title">Selected work, end to end</h2>
+            <span class="pill">6 projects</span>
+          </div>
+        </div>
+        <div class="apps">
+          {projects.map((p) => (
+            <a class="card app" href={`/projects/${p.slug}/`}>
+              <p class="kicker card-kicker">{kinds[p.slug]}</p>
+              <h3>{p.title}</h3>
+              <p>{p.blurb}</p>
+              <p class="foot-row">
+                <span class={`state s-${p.status.replace(' ', '-')}`}>{p.status}</span>
+                <span class="go" aria-hidden="true">→</span>
+              </p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="ss-title">
+        <div class="head">
+          <div class="bar" aria-hidden="true"></div>
+          <div class="row">
+            <h2 id="ss-title">Self-service apps on the platform</h2>
+            <span class="pill">8 apps</span>
+          </div>
+          <p class="intro">Each app turns an operational request into a button. Every action is audited, one approval sets up access through Azure AD groups, and completed actions can raise and close their own Jira ticket.</p>
+        </div>
+        <div class="mini-apps">
+          {selfService.map((a) => (
+            <div class="card">
+              <p class="kicker card-kicker">{a.kind}</p>
+              <h3 class="small">{a.name}</h3>
+              <p>{a.line}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="block two" aria-label="How I work">
+        <div class="dark">
+          <p class="kicker">How I work</p>
+          <ul class="tight">
+            <li><b>Start with the people.</b> Requirements come straight from the finance, supply chain, clinical-operations and IT colleagues who work with customers.</li>
+            <li><b>Compose before coding.</b> Routine automation is built from ready steps in a low-code workflow engine, so scheduling, approvals, audit and alerts come built in. Custom code is kept for what really needs it.</li>
+            <li><b>Build the whole path.</b> Data model, Python and React, integrations, deployment on AWS with Terraform, then support in production.</li>
+            <li><b>Keep people in charge.</b> AI drafts and automates, a person approves anything that matters.</li>
+          </ul>
+        </div>
+        <div class="dark">
+          <p class="kicker">Systems I connect</p>
+          <div class="chips">
+            {['NetSuite', 'Snowflake', 'ServiceNow', 'Certinia', 'Jira', 'Confluence', 'Box', 'Microsoft Teams', 'Entra ID', 'AWS', 'Bedrock', 'MCP'].map((c) => <span>{c}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="block" aria-labelledby="exp-title">
+        <div class="head">
+          <div class="bar" aria-hidden="true"></div>
+          <div class="row">
+            <h2 id="exp-title">From Oracle DBA to platform builder</h2>
+            <span class="pill">11+ years</span>
+          </div>
+        </div>
+        <ol class="timeline">
+          {experience.map((job) => (
+            <li class="card">
+              <p class="kicker card-kicker">{job.years}</p>
+              <h3>{job.title}, {job.org}</h3>
+              <p>{job.note}</p>
+              <p class="tags">{job.tags.join(' · ')}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+
+      <section class="block">
+        <div class="closing">
+          <div>
+            <p>Open to forward deployed and solutions engineering roles.</p>
+            <span class="where">Hyderabad · remote or hybrid · India, or abroad with visa sponsorship</span>
+          </div>
+          <div class="actions">
+            <a class="cta" href={`mailto:${links.email}`}>Email me</a>
+            <a class="cta ghost" href={links.linkedin}>LinkedIn</a>
+            <a class="cta ghost" href={links.resume}>Resume</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Shareef Syed · Hyderabad, India</span>
+      <span class="foot-links"><a href={links.linkedin}>LinkedIn</a><a href={links.github}>GitHub</a><a href={links.resume}>Resume (PDF)</a></span>
+    </footer>
+  </div>
+</Base>
+
+<style>
+  h1, h2, h3 { font-family: var(--font-display); color: var(--navy); margin: 0; font-weight: 700; text-wrap: balance; }
+  b { color: var(--navy); font-weight: 600; }
+
+  .cover { position: relative; overflow: hidden; padding: 28px 40px 44px; display: grid; gap: 14px; }
+  .cover > *:not(.circles) { position: relative; z-index: 1; }
+  .circles { position: absolute; right: -40px; top: 40px; width: 380px; height: 320px; pointer-events: none; }
+  .circles span { position: absolute; border-radius: 50%; }
+  .c1 { width: 250px; height: 250px; left: 20px; top: 40px; background: var(--systems); }
+  .c2 { width: 190px; height: 190px; left: 130px; top: 0; background: var(--mist); opacity: .92; }
+  .c3 { width: 130px; height: 130px; left: 80px; top: 200px; background: var(--sky); opacity: .85; }
+  .topnav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; max-width: calc(100% - 300px); }
+  .name { font: 700 22px/1 var(--font-display); color: var(--navy); text-decoration: none; letter-spacing: .01em; }
+  .links { display: flex; gap: 20px; }
+  .links a { color: var(--navy); text-decoration: none; font-weight: 500; }
+  .links a:hover { color: var(--signal); }
+  h1 { font-size: var(--step-3); line-height: 1; max-width: 13ch; }
+  .lede { font-size: 18px; line-height: 1.4; max-width: 48ch; color: var(--ink); margin: 0; }
+  .meta { font-weight: 600; color: var(--navy); margin: 0; }
+
+  main { padding: 8px 40px 32px; display: grid; gap: 40px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .stat { background: var(--navy); color: var(--band-ink); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+  .stat strong { font: 700 48px/1 var(--font-display); color: var(--systems); }
+  .stat span { font-size: 14px; line-height: 1.35; }
+
+  .block { display: grid; gap: 16px; }
+  .head { display: grid; gap: 10px; }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  h2 { font-size: 32px; line-height: 1.05; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+  .card .card-kicker { color: var(--orange); font-size: 11px; letter-spacing: .14em; margin: 0; }
+  .card h3 { font-size: 22px; line-height: 1.1; font-weight: 600; }
+  .card p { margin: 0; font-size: 15px; color: var(--ink); }
+
+  .apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .app { text-decoration: none; color: inherit; transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease), transform 150ms var(--ease); }
+  .app:hover { border-color: var(--systems); box-shadow: 0 8px 24px -16px rgba(14, 42, 59, .45); transform: translateY(-2px); }
+  .app:hover h3 { color: var(--signal); }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px !important; }
+  .state { font: 600 12px/1 var(--font-sans); letter-spacing: .04em; padding: 6px 10px; border-radius: 999px; background: var(--pill); color: var(--navy); }
+  .s-live { background: var(--navy); color: #f6f8fa; }
+  .go { color: var(--signal); font-weight: 600; }
+
+  .intro { margin: 0; max-width: 70ch; color: var(--ink); }
+  .mini-apps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .card h3.small { font-size: 20px; }
+  .mini-apps .card p:last-child { font-size: 14px; }
+  .two { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .dark { background: var(--navy); color: var(--band-ink); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 12px; align-content: start; }
+  .dark .kicker { color: var(--systems); font-size: 11px; letter-spacing: .14em; margin: 0; }
+  .dark b { color: #f6f8fa; }
+  .tight { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { background: var(--navy-2); color: #e9f4fa; border-radius: 999px; padding: 5px 12px; font-size: 14px; }
+
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .timeline li:first-child { grid-column: 1 / -1; }
+  .tags { color: var(--slate) !important; font-size: 13px !important; margin-top: 4px !important; }
+
+  .posts { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+  .posts li { display: grid; grid-template-columns: 100px 1fr; gap: 16px; padding: 12px 18px; border-bottom: 1px solid var(--line); }
+  .posts li:last-child { border-bottom: 0; }
+  .when { color: var(--slate); font-size: 14px; }
+  .posts a { color: var(--navy); font-weight: 500; text-decoration: none; }
+  .posts a:hover { color: var(--signal); text-decoration: underline; }
+
+  .closing { background: var(--navy); border-radius: var(--radius); padding: 22px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .closing p { font: 600 28px/1.1 var(--font-display); color: var(--systems); margin: 0; max-width: 28ch; }
+  .cta { background: var(--systems); color: var(--navy); font-weight: 600; padding: 12px 18px; border-radius: 10px; text-decoration: none; }
+  .cta:hover { background: #f6f8fa; }
+  .where { display: block; margin-top: 8px; color: var(--band-ink); font-size: 15px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cta.ghost { background: transparent; color: #f6f8fa; border: 1px solid var(--navy-2); }
+  .cta.ghost:hover { border-color: var(--systems); color: var(--systems); background: transparent; }
+
+  .foot { padding: 16px 40px 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--slate); }
+  .foot-links { display: flex; gap: 18px; }
+  .foot-links a { color: var(--slate); }
+
+  @media (max-width: 900px) {
+    .apps, .mini-apps { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    .cover, main, .foot { padding-left: 20px; padding-right: 20px; }
+    .circles { opacity: .35; right: -170px; }
+    .topnav { max-width: none; margin-bottom: 20px; }
+    .links { gap: 14px; font-size: 15px; }
+    .apps, .mini-apps, .two, .timeline { grid-template-columns: 1fr; }
+    .posts li { grid-template-columns: 1fr; gap: 2px; }
+  }
+  @media (max-width: 520px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat strong { font-size: 40px; }
+  }
+</style>

@@ -1,0 +1,105 @@
+---
+// Architecture diagram drawn with HTML/CSS: stages left to right (top to bottom on phones),
+// each stage a column of nodes, with an optional label on the arrow into it.
+export interface FlowNode {
+  label: string;
+  note?: string;
+  tone?: 'source' | 'core' | 'person' | 'out';
+}
+export interface FlowStage {
+  via?: string;
+  nodes: FlowNode[];
+}
+interface Props {
+  stages: FlowStage[];
+  caption: string;
+}
+const { stages, caption } = Astro.props;
+---
+<figure class="flow" aria-label={caption}>
+  <div class="track">
+    {stages.map((stage, i) => (
+      <>
+        {i > 0 && (
+          <div class="arrow" aria-hidden="true">
+            {stage.via && <span class="via">{stage.via}</span>}
+          </div>
+        )}
+        <div class="stage">
+          {stage.nodes.map((node) => (
+            <div class={`node ${node.tone ?? 'core'}`}>
+              <strong>{node.label}</strong>
+              {node.note && <span>{node.note}</span>}
+            </div>
+          ))}
+        </div>
+      </>
+    ))}
+  </div>
+  <figcaption>{caption}
+    <span class="legend" aria-hidden="true"><span><i class="k-sys"></i>system or input</span><span><i class="k-core"></i>what I built</span><span><i class="k-person"></i>a person decides</span></span>
+  </figcaption>
+</figure>
+
+<style>
+  .flow {
+    margin: 0;
+    padding: var(--space-4) var(--space-3) var(--space-3);
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .track { display: flex; align-items: center; min-width: min-content; }
+  .stage { display: flex; flex-direction: column; gap: 10px; flex: 1 1 0; min-width: 150px; }
+  .node {
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    font-size: 0.875rem;
+    line-height: 1.35;
+  }
+  .node strong { display: block; font-weight: 600; }
+  .node span { display: block; color: var(--slate); font-size: 0.8rem; margin-top: 2px; }
+  .node.source { border-color: var(--systems); background: var(--systems-soft); }
+  .node.core { border-color: var(--signal); background: var(--signal-soft); }
+  .node.person { border-style: dashed; border-color: var(--slate); }
+  .node.out { border-color: var(--line); }
+  .arrow { flex: 0 0 64px; position: relative; height: 1.5px; background: var(--slate); margin: 0 6px; }
+  .arrow::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-left: 7px solid var(--slate);
+    border-right: 0;
+  }
+  .via {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--slate);
+    white-space: nowrap;
+  }
+  figcaption { margin-top: var(--space-3); font-size: var(--step--1); color: var(--slate); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; font-family: var(--font-mono); font-size: 11.5px; color: var(--slate); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; border: 1px solid; }
+  .k-sys { border-color: var(--systems) !important; background: var(--systems-soft); }
+  .k-core { border-color: var(--signal) !important; background: var(--signal-soft); }
+  .k-person { border-style: dashed !important; border-color: var(--slate) !important; }
+  @media (max-width: 760px) {
+    .flow { padding: var(--space-3) var(--space-2) var(--space-2); }
+    .track { flex-direction: column; align-items: stretch; min-width: 0; }
+    .stage { min-width: 0; }
+    .arrow { flex: 0 0 40px; width: 1.5px; height: 40px; margin: 6px auto; }
+    .arrow::after { right: auto; left: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top: 7px solid var(--slate); border-bottom: 0; }
+    .via { bottom: auto; top: 50%; left: 14px; transform: translateY(-50%); }
+  }
+</style>
