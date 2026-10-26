@@ -60,6 +60,7 @@ export const selfService = [
 // Other platform work, matching the profile README.
 export const alsoBuilt = [
   { kind: 'Operations', name: 'Observability platform', line: 'Metrics, a log explorer, alerting and runbook execution, with access set per project.' },
+  { kind: 'Monitoring', name: 'Uptime monitoring', line: 'Self-hosted uptime and health checks for the platform’s services on an open-source monitor, with Microsoft Teams alerts.' },
   { kind: 'Security', name: 'Credential vault', line: 'Secrets with KMS envelope encryption, rotation, audit connectors and Azure AD directory sync.' },
   { kind: 'Packages', name: 'Shared sign-in and AWS packages', line: 'Entra ID sign-in with JWT, API keys and RBAC, and AWS connection management with credential rotation and audit, shared by several internal apps.' },
   { kind: 'Infrastructure', name: 'From one VM to Amazon EKS', line: 'Moved production to EKS in Terraform, with Karpenter, Aurora Serverless v2, ElastiCache Valkey and keyless GitHub OIDC deploys.' },
