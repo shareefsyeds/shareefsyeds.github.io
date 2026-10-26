@@ -3,6 +3,10 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { links, experience, selfService, alsoBuilt } from '../data/site';
 import { projects } from '../data/projects';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+const platformDiagram = existsSync(join(process.cwd(), 'public', 'diagrams', 'platform.html'));
 
 const stats = [
   ['calendar-days', '11+', 'years across databases, cloud and platforms'],
@@ -132,6 +136,9 @@ const kinds: Record<string, string> = {
             </div>
           ))}
         </div>
+        {platformDiagram && (
+          <a class="diagram-link" href="/diagrams/platform.html" target="_blank" rel="noopener"><Icon name="network" size={18} />See how the platform runs on Amazon EKS (interactive diagram)<Icon name="arrow-up-right" size={16} /></a>
+        )}
       </section>
 
       <section class="block two" aria-label="How I work">
@@ -306,4 +313,6 @@ const kinds: Record<string, string> = {
     .stats { grid-template-columns: 1fr 1fr; }
     .stat strong { font-size: 40px; }
   }
+  .diagram-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--signal); font-weight: 600; text-decoration: none; }
+  .diagram-link:hover { text-decoration: underline; }
 </style>
