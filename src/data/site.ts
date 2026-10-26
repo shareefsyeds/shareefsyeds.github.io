@@ -9,14 +9,14 @@ export const links = {
 
 export const experience = [
   {
-    years: '2022 — Present',
+    years: '2022 to present',
     title: 'Senior Cloud Operations Engineer',
     org: 'Signant Health',
     note: 'Build and run the internal platform 200+ employees use for access requests, workflow automation, enterprise integrations and AI tooling. I take requirements directly from finance, supply chain, clinical-operations and IT teams and run what I build in production. Started in cloud operations and database administration. Core Contributor every year.',
     tags: ['Python', 'Django', 'React', 'TypeScript', 'AWS', 'Terraform', 'Kubernetes', 'MCP', 'Bedrock'],
   },
   {
-    years: '2020 — 2022',
+    years: '2020 to 2022',
     title: 'Cloud Infrastructure Engineer',
     org: 'Autodesk',
     note: 'Migrated self-managed databases to Amazon RDS with AWS DMS, across accounts and regions. Built new AWS accounts in CloudFormation and supported GoldenGate replication from on-prem to cloud. Exceptional Performance Award, twice.',
@@ -30,14 +30,14 @@ export const experience = [
     tags: ['Oracle RAC', 'GoldenGate', 'SQL Server'],
   },
   {
-    years: '2017 — 2019',
+    years: '2017 to 2019',
     title: 'Oracle Database Administrator',
     org: 'Flytxt',
     note: 'Oracle RAC and single-instance databases, Data Guard standbys for disaster recovery, and performance tuning with AWR and ASH.',
     tags: ['Oracle', 'Data Guard', 'RMAN'],
   },
   {
-    years: '2015 — 2017',
+    years: '2015 to 2017',
     title: 'Oracle Database Administrator',
     org: 'Datavail',
     note: 'Database operations for client companies at a managed-services firm: patching, backup and recovery, cloning and Data Guard support.',

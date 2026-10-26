@@ -71,7 +71,7 @@ export const projects: Project[] = [
     slug: 'mcp',
     blurb: "A sync job turns about 16 apps' OpenAPI specs into 250+ MCP tools, plus a curated set. The same tool list drives AI assistants and a command-line tool, so a new endpoint needs no extra release.",
     tags: ['MCP', 'OpenAPI', 'Python', 'AI'],
-    title: 'Every internal API becomes an AI tool',
+    title: '250+ internal API operations as MCP tools',
     status: 'live',
     facts: ['250+ tools', 'about 16 apps'],
     problem:
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     slug: 'template',
     blurb: 'The platform core as a project template: Entra ID sign-in, roles, audit log and 13 integration adapters out of the box. An invoicing app built on it is live for 100+ users.',
     tags: ['Django', 'React', 'Entra ID', 'ECS', 'EKS'],
-    title: 'An app template that ships the hard parts',
+    title: 'A reusable app template with 13 integration adapters',
     status: 'in use',
     facts: ['13 integration adapters', '1 app live, 100+ users'],
     problem:
@@ -155,11 +155,11 @@ export const projects: Project[] = [
     slug: 'agents',
     blurb: 'A Jira request becomes an AI plan a person approves in Teams, then a tested, independently reviewed draft pull request a person merges. In development.',
     tags: ['Claude Code', 'Codex', 'Bedrock', 'GitHub Actions'],
-    title: 'An AI agent team that asks before it builds',
+    title: 'An AI agent team with human approval',
     status: 'in development',
     facts: ['human approval at two points', 'sandboxed tests'],
     problem:
-      'AI can draft small, well-described code changes. Letting an agent merge its own code is not acceptable, so the design had to keep people in charge.',
+      'AI can draft small, well-described code changes. Letting an agent merge its own code is not acceptable, so a person approves every plan and every merge.',
     approach:
       'A Jira request becomes an AI-written plan that a person approves in Teams. Only the approved plan is built: an implementer writes the change, tests run in a sandbox with no secrets, and an independent AI reviewer checks it. The output is a draft pull request.',
     result:
