@@ -56,3 +56,12 @@ export const selfService = [
   { kind: 'Documents', name: 'Document delivery', line: 'Upload a document with a justification. It is archived and delivered into the downstream system automatically.' },
   { kind: 'Insight', name: 'Operational dashboards', line: 'Dashboards and reports refreshed daily and weekly from the source systems.' },
 ];
+
+// Other platform work, matching the profile README.
+export const alsoBuilt = [
+  { kind: 'Operations', name: 'Observability platform', line: 'Metrics, a log explorer, alerting and runbook execution, with access set per project.' },
+  { kind: 'Security', name: 'Credential vault', line: 'Secrets with KMS envelope encryption, rotation, audit connectors and Azure AD directory sync.' },
+  { kind: 'Packages', name: 'Shared sign-in and AWS packages', line: 'Entra ID sign-in with JWT, API keys and RBAC, and AWS connection management with credential rotation and audit, shared by several internal apps.' },
+  { kind: 'Infrastructure', name: 'From one VM to Amazon EKS', line: 'Moved production to EKS in Terraform, with Karpenter, Aurora Serverless v2, ElastiCache Valkey and keyless GitHub OIDC deploys.' },
+  { kind: 'Cost', name: 'CloudWatch cost finding', line: 'Traced 91% of an AWS account’s CloudWatch log spend to one DEBUG-level Lambda, a ~$3K/month fix, and proposed a self-hosted log stack projected to save ~$47.9K a year.' },
+];

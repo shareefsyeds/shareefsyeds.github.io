@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { links, experience, selfService } from '../data/site';
+import { links, experience, selfService, alsoBuilt } from '../data/site';
 import { projects } from '../data/projects';
 
 const stats = [
@@ -85,6 +85,25 @@ const kinds: Record<string, string> = {
         </div>
         <div class="mini-apps">
           {selfService.map((a) => (
+            <div class="card">
+              <p class="kicker card-kicker">{a.kind}</p>
+              <h3 class="small">{a.name}</h3>
+              <p>{a.line}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="also-title">
+        <div class="head">
+          <div class="bar" aria-hidden="true"></div>
+          <div class="row">
+            <h2 id="also-title">Also on the platform</h2>
+            <span class="pill">Operations, security, cost</span>
+          </div>
+        </div>
+        <div class="also">
+          {alsoBuilt.map((a) => (
             <div class="card">
               <p class="kicker card-kicker">{a.kind}</p>
               <h3 class="small">{a.name}</h3>
@@ -204,6 +223,8 @@ const kinds: Record<string, string> = {
   .mini-apps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .card h3.small { font-size: 20px; }
   .mini-apps .card p:last-child { font-size: 14px; }
+  .also { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .also .card p:last-child { font-size: 14px; }
   .two { grid-template-columns: 1fr 1fr; gap: 12px; }
   .dark { background: var(--navy); color: var(--band-ink); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 12px; align-content: start; }
   .dark .kicker { color: var(--systems); font-size: 11px; letter-spacing: .14em; margin: 0; }
@@ -237,7 +258,7 @@ const kinds: Record<string, string> = {
   .foot-links a { color: var(--slate); }
 
   @media (max-width: 900px) {
-    .apps, .mini-apps { grid-template-columns: 1fr 1fr; }
+    .apps, .mini-apps, .also { grid-template-columns: 1fr 1fr; }
     .stats { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 760px) {
@@ -245,7 +266,7 @@ const kinds: Record<string, string> = {
     .circles { opacity: .35; right: -170px; }
     .topnav { max-width: none; margin-bottom: 20px; }
     .links { gap: 14px; font-size: 15px; }
-    .apps, .mini-apps, .two, .timeline { grid-template-columns: 1fr; }
+    .apps, .mini-apps, .also, .two, .timeline { grid-template-columns: 1fr; }
     .posts li { grid-template-columns: 1fr; gap: 2px; }
   }
   @media (max-width: 520px) {
